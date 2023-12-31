@@ -4,6 +4,7 @@ import com.example.tweb3demo1.grass.domain.GrassConnection;
 import com.example.tweb3demo1.grass.domain.Message;
 import com.example.tweb3demo1.grass.domain.repo.ConnectionRepo;
 import com.example.tweb3demo1.grass.domain.repo.MessageRepo;
+import com.example.tweb3demo1.grass.inboundadapter.GrassSSLWebSocketClient;
 import com.example.tweb3demo1.grass.outboundAdapter.repo.ConnectionRepoImpl;
 import com.example.tweb3demo1.grass.outboundAdapter.repo.MessageRepoImpl;
 import org.java_websocket.client.WebSocketClient;
@@ -20,14 +21,14 @@ public class MessageApplicationService {
     private final ConnectionRepo connectionRepo = new ConnectionRepoImpl();
 
 
-    public void handlePong(WebSocketClient client, Message.PongRequestMessage pongRequestMessage) {
+    public void handlePong(GrassSSLWebSocketClient client, Message.PongRequestMessage pongRequestMessage) {
 
         Message.PongResponse pongResponse = pongRequestMessage.createResponse();
         messageRepo.send(client, pongResponse);
 
     }
 
-    public void handleAuth(String userId, String ip, WebSocketClient client, Message.AuthRequestMessage authRequestMessage) {
+    public void handleAuth(String userId, String ip, GrassSSLWebSocketClient client, Message.AuthRequestMessage authRequestMessage) {
 
         Message.AuthResponse authResponse = authRequestMessage.createResponse(userId, ip);
         GrassConnection grassConnection = new GrassConnection();
@@ -41,7 +42,7 @@ public class MessageApplicationService {
         messageRepo.send(client, authResponse);
     }
 
-    public void sendPing(String userId, String ip, WebSocketClient client) {
+    public void sendPing(String userId, String ip, GrassSSLWebSocketClient client) {
         GrassConnection grassConnection = new GrassConnection();
         grassConnection.setUserId(userId);
         grassConnection.setIp(ip);
