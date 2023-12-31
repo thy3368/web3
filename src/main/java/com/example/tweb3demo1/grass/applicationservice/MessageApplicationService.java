@@ -23,14 +23,13 @@ public class MessageApplicationService {
     public void handlePong(WebSocketClient client, Message.PongRequestMessage pongRequestMessage) {
 
         Message.PongResponse pongResponse = pongRequestMessage.createResponse();
-
         messageRepo.send(client, pongResponse);
 
     }
 
     public void handleAuth(String userId, String ip, WebSocketClient client, Message.AuthRequestMessage authRequestMessage) {
-        Message.AuthResponse authResponse = authRequestMessage.createResponse(userId, ip);
 
+        Message.AuthResponse authResponse = authRequestMessage.createResponse(userId, ip);
         GrassConnection grassConnection = new GrassConnection();
         grassConnection.setUserId(userId);
         grassConnection.setIp(ip);
@@ -49,12 +48,10 @@ public class MessageApplicationService {
         GrassConnection newGrassConnection = connectionRepo.query(grassConnection);
 
         logger.info(grassConnection.getUserId() + "准备ping");
-
         if (newGrassConnection.isAuthed()) {
             Message.PingMessage message = Message.ping();
             messageRepo.send(client, message);
         }
-
 
     }
 }

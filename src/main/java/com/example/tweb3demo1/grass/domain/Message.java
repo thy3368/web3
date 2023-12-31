@@ -39,25 +39,7 @@ public class Message {
         private final String action = "PING";
         private final Map data = new HashMap<>();
 
-//
-//        id: uuidv4(),
-//        version: "1.0.0",
-//        action: "PING",
-//        data: {},
-
-
     }
-
-
-//
-//        const authenticationResponse = {
-//        browser_id,
-//                user_id: userId,
-//                user_agent: USER_AGENT,
-//                timestamp: getUnixTimestamp(),
-//                device_type: deviceType,
-//    };
-//
 
 
     @Data

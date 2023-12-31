@@ -8,6 +8,7 @@ public class GrassConnection {
 
     private String userId;
     private String ip;
+    private boolean enableProxy = true;
     private boolean authed;
 
 }

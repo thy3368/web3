@@ -17,7 +17,7 @@ public class ConnectionRepoImpl implements ConnectionRepo {
         GrassConnection connection = new GrassConnection();
 
         connection.setUserId("30901ea9-bf85-43b0-954c-206450000284");
-        connection.setIp("122.115.73.41");
+        connection.setIp("38.170.102.53");
 
         this.save(connection);
 
