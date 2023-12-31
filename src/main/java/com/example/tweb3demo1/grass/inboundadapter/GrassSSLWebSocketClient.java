@@ -108,10 +108,16 @@ public class GrassSSLWebSocketClient extends WebSocketClient {
 
         logger.info(grassConnection.getUserId() + httpProxy);
 
-        if (StringUtils.isNoneEmpty(httpProxy.getUsername())) {
-            setAuthProperties(httpProxy.getUsername(), httpProxy.getPassword());
+
+        if (grassConnection.isEnableProxy()) {
+            logger.info(grassConnection.getUserId() + httpProxy);
+            this.setProxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(httpProxy.getIp(), httpProxy.getPort())));
+            if (StringUtils.isNoneEmpty(httpProxy.getUsername())) {
+                logger.info(grassConnection.getUserId() + "enable proxy username/password");
+                setAuthProperties(httpProxy.getUsername(), httpProxy.getPassword());
+            }
         }
-        this.setProxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(httpProxy.getIp(), httpProxy.getPort())));
+
 //        client.addHeader("Cache-Control", "only-if-cached");
 
 
