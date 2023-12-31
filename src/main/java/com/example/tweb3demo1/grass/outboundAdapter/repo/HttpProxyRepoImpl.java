@@ -13,14 +13,13 @@ public class HttpProxyRepoImpl implements HttpProxyRepo {
     public HttpProxyRepoImpl() {
 
 
-        HttpProxy proxy = new HttpProxy();
-        proxy.setIp("38.170.102.53");
-        proxy.setPort(9847);
-        proxy.setUsername("d85Ewe");
-        proxy.setPassword("DBJ60N");
+        HttpProxy proxy = new HttpProxy("38.170.102.53", 9847, "d85Ewe", "DBJ60N");
+        HttpProxy proxy2 = new HttpProxy("122.115.73.41", 65443, null, null);
 
 
         this.save(proxy);
+        this.save(proxy2);
+
 
     }
 

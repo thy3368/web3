@@ -11,7 +11,7 @@ public class HttpProxyApplicationService {
 
     void save() {
 
-        HttpProxy httpProxy = new HttpProxy();
+        HttpProxy httpProxy = null;
         httpProxyRepo.save(httpProxy);
 
 

@@ -8,6 +8,7 @@ import com.example.tweb3demo1.grass.domain.HttpProxy;
 import com.example.tweb3demo1.grass.domain.Message;
 import lombok.Getter;
 import nl.altindag.ssl.pem.util.PemUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.enums.ReadyState;
@@ -107,8 +108,9 @@ public class GrassSSLWebSocketClient extends WebSocketClient {
 
         logger.info(grassConnection.getUserId() + httpProxy);
 
-
-        setAuthProperties(httpProxy.getUsername(), httpProxy.getPassword());
+        if (StringUtils.isNoneEmpty(httpProxy.getUsername())) {
+            setAuthProperties(httpProxy.getUsername(), httpProxy.getPassword());
+        }
         this.setProxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(httpProxy.getIp(), httpProxy.getPort())));
 //        client.addHeader("Cache-Control", "only-if-cached");
 
